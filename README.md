@@ -1,2 +1,2 @@
-# ideco
+# [WIP] ideco
 iDeCo出口戦略シミュレーター
