@@ -7,18 +7,35 @@ function calc() {
     var oneTimeIncomes
     var oneTimeWithhold
 
+    let total = document.getElementById("total");
+    let totalValue = parseFloat(total.value * 10000);
+    totalValue = Math.floor(totalValue);
+
+    if (!totalValue) {
+        show("result", true);
+        return;
+    }
+
+    let idecoSpan = document.getElementById("idecoSpan");
+    let idecoSpanValue = parseFloat(idecoSpan.value);
+    idecoSpanValue = Math.floor(idecoSpanValue);
+    show("oneTimeResult", !idecoSpanValue);
+
     let isWithSeverance = document.getElementById("withSeverance").checked;
     if (isWithSeverance) {
-        ;
+        let workSpan = Math.floor(parseFloat(document.getElementById("workSpan").value));
+        let severance = Math.floor(parseFloat(document.getElementById("severance").value) * 10000);
+
+        appliedSpan = max(idecoSpanValue, workSpan);
+        if (appliedSpan <= 20) {
+            oneTimeHoldings = 400000 * idecoSpanValue;
+        } else {
+            oneTimeHoldings = (idecoSpanValue - 20) * 700000 + 8000000
+        }
+
+        oneTimeIncomes = totalValue + severance;
+        show("oneTimeResult", (workSpan && severance));
     } else {
-        let idecoSpan = document.getElementById("idecoSpan");
-        let idecoSpanValue = parseFloat(idecoSpan.value);
-        idecoSpanValue = Math.floor(idecoSpanValue);
-
-        let total = document.getElementById("total");
-        let totalValue = parseFloat(total.value * 10000);
-        totalValue = Math.floor(totalValue);
-
         if (idecoSpanValue < 20) {
             oneTimeHoldings = 400000 * idecoSpanValue;
         } else {
@@ -26,13 +43,12 @@ function calc() {
         }
 
         oneTimeIncomes = Math.floor((totalValue - oneTimeHoldings) / 2)
-        oneTimeWithhold = calcOneTimeWithhold(oneTimeIncomes);
-        moneyDisplay(oneTimeHoldings, "oneTimeHoldings");
-        moneyDisplay(oneTimeIncomes, "oneTimeIncomes");
-        moneyDisplay(oneTimeWithhold, "oneTimeWithhold")
-
-        show("oneTimeZero", !(totalValue - oneTimeHoldings <= 0));
     }
+    oneTimeWithhold = calcOneTimeWithhold(oneTimeIncomes);
+    moneyDisplay(oneTimeHoldings, "oneTimeHoldings");
+    moneyDisplay(oneTimeIncomes, "oneTimeIncomes");
+    moneyDisplay(oneTimeWithhold, "oneTimeWithhold")
+    show("oneTimeZero", !(totalValue - oneTimeHoldings <= 0));
 
     show("result");
 }
@@ -88,7 +104,7 @@ function show(target, anti = false) {
     var elementToShow = document.getElementById(showTarget);
     var elementToHide = document.getElementById(hideTarget);
 
-    alert(showTarget + " " + hideTarget)
+    console.log(`show: ${showTarget} / hide: ${hideTarget}`);
 
     if (elementToShow && elementToHide) {
         elementToShow.style.display = "block";

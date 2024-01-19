@@ -32,26 +32,32 @@
             <div class="card _round" style="background-color: #fcfcfc;">
                 <div class="content container morePadding bottomMargin">
                     <h2>入力</h2>
-                    <label for="total">積立総額</label>
+                    <label for="total">積立総額（入力必須）</label>
                     <button type="button" style="background-color: #338; color: #fcfcfc; width: 100%;">毎月の積立金額から総額を算出する</button>
                     <input id="total" type="number" style="width: 100%;" placeholder="（単位：万円）"></input>
 
-                    <label for="idecoSpan">iDeCoの加入期間</label>
-                    <input id="idecoSpan" type="number" style="width: 100%;" placeholder="（単位：年）"></input>
+                    <div class="bottomMargin">
+                        <fieldset>
+                            <legend>一時金受け取りの計算に用います</legend>
+                            <label for="idecoSpan">iDeCoの加入期間</label>
+                            <input id="idecoSpan" type="number" style="width: 100%;" placeholder="（単位：年）"></input>
 
-                    <label for="withSeverance">
-                        <input type="checkbox" id="withSeverance">
-                        <span class="-label-body">退職金等と同時期（5年以内）に受け取る</span>
-                    </lave>
+                            <label for="withSeverance">
+                                <input type="checkbox" id="withSeverance">
+                                <span class="-label-body">退職金等と同時期（5年以内）に受け取る</span>
+                            </label>
 
-                    <!-- TODO : ここまで実装済み -->
+                            <!-- TODO : ここまで実装済み -->
 
-                    <div id="severance" style="display: none;">
-                        <label for="workSpan">勤続年数</label>
-                        <input id="workSpan" type="number" style="width: 100%;" placeholder="（単位：年）"></input>
+                            <div id="severance" style="display: none;">
+                                <label for="workSpan">勤続年数</label>
+                                <input id="workSpan" type="number" style="width: 100%;" placeholder="（単位：年）"></input>
 
-                        <label for="severance">iDeCo以外で受け取る見込みの退職金</label>
-                        <input id="severance" type="number" style="width: 100%;" placeholder="（単位：円）"></input>
+                                <label for="severance">iDeCo以外で受け取る見込みの退職金</label>
+                                <input id="severance" type="number" style="width: 100%;" placeholder="（単位：万円）"></input>
+                            </div>
+                            <p style="color: #cc3333; font-size: smaller;">※ 特定役員退職手当等・短期退職手当等を考慮した計算はできません</p>
+                        </fieldset>
                     </div>
 
                     <div id="anti-severance"></div>
@@ -72,11 +78,16 @@
                         <div class="bottomMargin">
                             <fieldset style="background-color: #ccffcc;">
                                 <legend>一時金受け取り</legend>
-                                <p>あなたの退職所得控除は<span class="bold" id="oneTimeHoldings">0,000万円</span>なので……</p>
-                                <p id="oneTimeZero">一時金で受け取った場合は<span class="bold">全額非課税</span>になります。</p>
-                                <div id="anti-oneTimeZero">
-                                    <p>課税対象の退職所得額は<span class="bold" id="oneTimeIncomes">0,000万円</span>になります。</p>
-                                    <p>源泉徴収額は<span class="bold" id="oneTimeWithhold">0,000万円</span>です。</p>
+                                <div id="oneTimeResult">
+                                    <p>あなたの退職所得控除は<span class="bold" id="oneTimeHoldings">0,000万円</span></p>
+                                    <p id="oneTimeZero">よって、一時金で受け取った場合は<span class="bold">全額非課税</span>です。</p>
+                                    <div id="anti-oneTimeZero">
+                                        <p>課税対象の退職所得額は<span class="bold" id="oneTimeIncomes">0,000万円</span></p>
+                                        <p>所得税額は<span class="bold" id="oneTimeWithhold">0,000万円</span>です。</p>
+                                    </div>
+                                </div>
+                                <div id="anti-oneTimeResult">
+                                    情報が足りません
                                 </div>
                             </fieldset>
                         </div>
