@@ -20,36 +20,58 @@
         </div>
 
         <div class="container">
+            <div class="card _round" style="background-color: #fccccc;">
+                <div class="content container morePadding bottomMargin">
+                    <h2>免責事項</h2>
+                    <p>このツールにて提供されるいかなる情報も、あなたに法的意見や税務上の助言をするものでは<span
+                            class="bold">ありません</span>。<br>
+                        ご自身に課される税金等については法律関連の専門家や関係する行政機関にご相談ください。</p>
+                </div>
+            </div>
+
             <div class="card _round" style="background-color: #fcfcfc;">
                 <div class="content container morePadding bottomMargin">
                     <h2>入力</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Sed
-                        quaerat repellendus est blanditiis odit aliquam qui
-                        maxime
-                        fugiat ex provident, iusto expedita nam ipsam optio
-                        molestias obcaecati. Cumque, quod numquam.</p>
-                    <button class="_nightblue _shadow">Like us
+                    <label for="total">積立総額</label>
+                    <input id="total" type="number" style="width: 100%;" placeholder="（単位：円）"></input>
+                    <div class="_alignCenter">
+                        <button style="background-color: #333; color: #fcfcfc; font-size: larger;">算出する</button>
                     </div>
                 </div>
+            </div>
 
             <div class="card _round" style="background-color: #fcfcfc;">
                 <div class="content container morePadding bottomMargin">
                     <h2>計算結果</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Sed
-                        quaerat repellendus est blanditiis odit aliquam qui
-                        maxime
-                        fugiat ex provident, iusto expedita nam ipsam optio
-                        molestias obcaecati. Cumque, quod numquam.</p>
-                    <button class="_nightblue _shadow">Like us
+                    <div class="bottomMargin">
+                        <fieldset style="background-color: #ccffcc;">
+                            <legend>一時金受け取り</legend>
+                            <p>Lorem ipsum dolor sit amet consectetur,
+                                adipisicing elit. Eos sunt amet dignissimos
+                                minima dolores laboriosam! Recusandae, ut minus!
+                                Porro sunt sit architecto perferendis eveniet,
+                                expedita consequuntur magnam possimus! Laborum,
+                                fugit.</p>
+                        </fieldset>
+                    </div>
+                    <div class="bottomMargin">
+                        <fieldset style="background-color: #ccccff;">
+                            <legend>年金受け取り</legend>
+                            <p>Lorem ipsum dolor sit amet consectetur,
+                                adipisicing elit. Eos sunt amet dignissimos
+                                minima dolores laboriosam! Recusandae, ut minus!
+                                Porro sunt sit architecto perferendis eveniet,
+                                expedita consequuntur magnam possimus! Laborum,
+                                fugit.</p>
+                        </fieldset>
                     </div>
                 </div>
-
             </div>
 
-            <!-- Beauter JS -->
-            <script
-                src="https://rawgit.com/outboxcraft/beauter/master/beauter.min.js"></script>
-        </body>
-    </html>
+        </div>
+
+        <!-- Beauter JS -->
+        <script
+            src="https://rawgit.com/outboxcraft/beauter/master/beauter.min.js"></script>
+    </body>
+</html>

@@ -6,3 +6,7 @@ div.morePadding {
 div.bottomMargin{
     margin-bottom: 40px;
 }
+
+.bold {
+    font-weight: bold;
+ }
