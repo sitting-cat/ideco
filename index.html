@@ -33,9 +33,31 @@
                 <div class="content container morePadding bottomMargin">
                     <h2>入力</h2>
                     <label for="total">積立総額</label>
-                    <input id="total" type="number" style="width: 100%;" placeholder="（単位：円）"></input>
+                    <button type="button" style="background-color: #338; color: #fcfcfc; width: 100%;">毎月の積立金額から総額を算出する</button>
+                    <input id="total" type="number" style="width: 100%;" placeholder="（単位：万円）"></input>
+
+                    <label for="idecoSpan">iDeCoの加入期間</label>
+                    <input id="idecoSpan" type="number" style="width: 100%;" placeholder="（単位：年）"></input>
+
+                    <label for="withSeverance">
+                        <input type="checkbox" id="withSeverance">
+                        <span class="-label-body">退職金等と同時期（5年以内）に受け取る</span>
+                    </lave>
+
+                    <!-- TODO : ここまで実装済み -->
+
+                    <div id="severance" style="display: none;">
+                        <label for="workSpan">勤続年数</label>
+                        <input id="workSpan" type="number" style="width: 100%;" placeholder="（単位：年）"></input>
+
+                        <label for="severance">iDeCo以外で受け取る見込みの退職金</label>
+                        <input id="severance" type="number" style="width: 100%;" placeholder="（単位：円）"></input>
+                    </div>
+
+                    <div id="anti-severance"></div>
+
                     <div class="_alignCenter">
-                        <button style="background-color: #333; color: #fcfcfc; font-size: larger;">算出する</button>
+                        <button style="background-color: #383; color: #fcfcfc; font-size: larger;" onclick="calc();">算出する</button>
                     </div>
                 </div>
             </div>
@@ -43,33 +65,38 @@
             <div class="card _round" style="background-color: #fcfcfc;">
                 <div class="content container morePadding bottomMargin">
                     <h2>計算結果</h2>
-                    <div class="bottomMargin">
-                        <fieldset style="background-color: #ccffcc;">
-                            <legend>一時金受け取り</legend>
-                            <p>Lorem ipsum dolor sit amet consectetur,
-                                adipisicing elit. Eos sunt amet dignissimos
-                                minima dolores laboriosam! Recusandae, ut minus!
-                                Porro sunt sit architecto perferendis eveniet,
-                                expedita consequuntur magnam possimus! Laborum,
-                                fugit.</p>
-                        </fieldset>
+                    <div id="anti-result">
+                        <p>上の「算出する」をクリックすると、ここに試算結果が表示されます</p>
                     </div>
-                    <div class="bottomMargin">
-                        <fieldset style="background-color: #ccccff;">
-                            <legend>年金受け取り</legend>
-                            <p>Lorem ipsum dolor sit amet consectetur,
-                                adipisicing elit. Eos sunt amet dignissimos
-                                minima dolores laboriosam! Recusandae, ut minus!
-                                Porro sunt sit architecto perferendis eveniet,
-                                expedita consequuntur magnam possimus! Laborum,
-                                fugit.</p>
-                        </fieldset>
+                    <div id="result" style="display: none;">
+                        <div class="bottomMargin">
+                            <fieldset style="background-color: #ccffcc;">
+                                <legend>一時金受け取り</legend>
+                                <p>あなたの退職所得控除は<span class="bold" id="oneTimeHoldings">0,000万円</span>なので……</p>
+                                <p id="oneTimeZero">一時金で受け取った場合は<span class="bold">全額非課税</span>になります。</p>
+                                <div id="anti-oneTimeZero">
+                                    <p>課税対象の退職所得額は<span class="bold" id="oneTimeIncomes">0,000万円</span>になります。</p>
+                                    <p>源泉徴収額は<span class="bold" id="oneTimeWithhold">0,000万円</span>です。</p>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="bottomMargin">
+                            <fieldset style="background-color: #ccccff;">
+                                <legend>年金受け取り</legend>
+                                <p>5年で受け取る場合: <span class="bold">0,000円</span></p>
+                                <p>10年で受け取る場合: <span class="bold">0,000円</span></p>
+                                <p>15年で受け取る場合: <span class="bold">0,000円</span></p>
+                                <p>20年で受け取る場合: <span class="bold">0,000円</span></p>
+                                <p><span class="bold">0年</span>以上に分割した場合は、公的年金等控除内に収まります</p>
+                            </fieldset>
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
 
+        <script src="./main.js"></script>
         <!-- Beauter JS -->
         <script
             src="https://rawgit.com/outboxcraft/beauter/master/beauter.min.js"></script>
