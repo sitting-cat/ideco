@@ -27,6 +27,7 @@ function calc() {
         let severance = Math.floor(parseFloat(document.getElementById("severance").value) * 10000);
 
         let appliedSpan = Math.max(idecoSpanValue, workSpan);
+        alert(appliedSpan);
         if (appliedSpan <= 20) {
             oneTimeHoldings = 400000 * appliedSpan;
         } else {
