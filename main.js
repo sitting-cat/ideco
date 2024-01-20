@@ -28,9 +28,9 @@ function calc() {
 
         let appliedSpan = Math.max(idecoSpanValue, workSpan);
         if (appliedSpan <= 20) {
-            oneTimeHoldings = 400000 * idecoSpanValue;
+            oneTimeHoldings = 400000 * appliedSpan;
         } else {
-            oneTimeHoldings = (idecoSpanValue - 20) * 700000 + 8000000
+            oneTimeHoldings = (appliedSpan - 20) * 700000 + 8000000
         }
 
         oneTimeIncomes = Math.floor((totalValue + severance - oneTimeHoldings) / 2);
