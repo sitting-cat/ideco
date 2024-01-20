@@ -26,15 +26,15 @@ function calc() {
         let workSpan = Math.floor(parseFloat(document.getElementById("workSpan").value));
         let severance = Math.floor(parseFloat(document.getElementById("severance").value) * 10000);
 
-        appliedSpan = max(idecoSpanValue, workSpan);
+        let appliedSpan = Math.max(idecoSpanValue, workSpan);
         if (appliedSpan <= 20) {
             oneTimeHoldings = 400000 * idecoSpanValue;
         } else {
             oneTimeHoldings = (idecoSpanValue - 20) * 700000 + 8000000
         }
 
-        oneTimeIncomes = totalValue + severance;
-        show("oneTimeResult", (workSpan && severance));
+        oneTimeIncomes = Math.floor((totalValue + severance - oneTimeHoldings) / 2);
+        show("oneTimeResult", !(workSpan && severance));
     } else {
         if (idecoSpanValue < 20) {
             oneTimeHoldings = 400000 * idecoSpanValue;
@@ -48,7 +48,7 @@ function calc() {
     moneyDisplay(oneTimeHoldings, "oneTimeHoldings");
     moneyDisplay(oneTimeIncomes, "oneTimeIncomes");
     moneyDisplay(oneTimeWithhold, "oneTimeWithhold")
-    show("oneTimeZero", !(totalValue - oneTimeHoldings <= 0));
+    show("oneTimeZero", !(oneTimeWithhold <= 0));
 
     show("result");
 }
@@ -79,7 +79,7 @@ function calcOneTimeWithhold(income) {
 }
 
 function severanceCheckBox() {
-    show("severance", !document.getElementById("withSeverance").checked);
+    show("severanceArea", !document.getElementById("withSeverance").checked);
 }
 
 function moneyDisplay(value, target) {

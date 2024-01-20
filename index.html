@@ -37,30 +37,47 @@
                     <input id="total" type="number" style="width: 100%;" placeholder="（単位：万円）"></input>
 
                     <div class="bottomMargin">
+                        <div class="bottomMargin">
                         <fieldset>
                             <legend>一時金受け取りの計算に用います</legend>
-                            <label for="idecoSpan">iDeCoの加入期間</label>
-                            <input id="idecoSpan" type="number" style="width: 100%;" placeholder="（単位：年）"></input>
+                            <div class="bottomMargin">
+                                <label for="idecoSpan">iDeCoの加入期間</label>
+                                <input id="idecoSpan" type="number" style="width: 100%;" placeholder="（単位：年）"></input>
 
-                            <label for="withSeverance">
-                                <input type="checkbox" id="withSeverance">
-                                <span class="-label-body">退職金等と同時期（5年以内）に受け取る</span>
-                            </label>
+                                <label for="withSeverance">
+                                    <input type="checkbox" id="withSeverance">
+                                    <span class="-label-body">退職金等と同時期（5年以内）に受け取る</span>
+                                </label>
 
-                            <!-- TODO : ここまで実装済み -->
+                                <div id="anti-severanceArea" style="font-size: smaller;">退職年金とは異なります</div>
 
-                            <div id="severance" style="display: none;">
-                                <label for="workSpan">勤続年数</label>
-                                <input id="workSpan" type="number" style="width: 100%;" placeholder="（単位：年）"></input>
+                                <div id="severanceArea" style="display: none;">
+                                    <label for="severance">iDeCo以外の退職金等</label>
+                                    <input id="severance" type="number" style="width: 100%;" placeholder="（単位：万円）"></input>
 
-                                <label for="severance">iDeCo以外で受け取る見込みの退職金</label>
-                                <input id="severance" type="number" style="width: 100%;" placeholder="（単位：万円）"></input>
+                                    <label for="workSpan">勤続年数</label>
+                                    <input id="workSpan" type="number" style="width: 100%;" placeholder="（単位：年）"></input>
+
+                                    <p style="font-size: smaller;">一時金の計算結果は退職金等とiDeCoの合算で表示します</p>
+                                </div>
                             </div>
+
                             <p style="color: #cc3333; font-size: smaller;">※ 特定役員退職手当等・短期退職手当等を考慮した計算はできません</p>
+                        </fieldset>
+                        </div>
+
+                        <fieldset>
+                            <legend>年金受け取りの計算に用います</legend>
+                            <label for="startOld">受給開始年齢</label>
+                            <p style="font-size: smaller; margin-bottom: 0px;">参考: 60歳になるまでは原則受け取れません</p>
+                            <input type="number" name="startOld" id="startOld" style="width: 100%;" placeholder="（単位：歳）">
+
+                            <label for="idecoIncomeSpan">受給期間</label>
+                            <input type="number" name="idecoIncomeSpan" id="idecoIncomeSpan" style="width: 100%;" placeholder="（単位：年）">
+
                         </fieldset>
                     </div>
 
-                    <div id="anti-severance"></div>
 
                     <div class="_alignCenter">
                         <button style="background-color: #383; color: #fcfcfc; font-size: larger;" onclick="calc();">算出する</button>
@@ -84,6 +101,7 @@
                                     <div id="anti-oneTimeZero">
                                         <p>課税対象の退職所得額は<span class="bold" id="oneTimeIncomes">0,000万円</span></p>
                                         <p>所得税額は<span class="bold" id="oneTimeWithhold">0,000万円</span>です。</p>
+                                        <p style="font-size: smaller;">医療控除等は考慮していません。</p>
                                     </div>
                                 </div>
                                 <div id="anti-oneTimeResult">
@@ -94,11 +112,9 @@
                         <div class="bottomMargin">
                             <fieldset style="background-color: #ccccff;">
                                 <legend>年金受け取り</legend>
-                                <p>5年で受け取る場合: <span class="bold">0,000円</span></p>
-                                <p>10年で受け取る場合: <span class="bold">0,000円</span></p>
-                                <p>15年で受け取る場合: <span class="bold">0,000円</span></p>
-                                <p>20年で受け取る場合: <span class="bold">0,000円</span></p>
-                                <p><span class="bold">0年</span>以上に分割した場合は、公的年金等控除内に収まります</p>
+                                <p>はじめの<span class="bold">0年間</span>:</p>
+                                <p></p>
+                                <p>もし、<span class="bold">0年</span>以上かけて受け取る場合は、公的年金等控除内に収まります</p>
                             </fieldset>
                         </div>
                     </div>
